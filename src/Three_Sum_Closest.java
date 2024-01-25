@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 class Solution{
@@ -8,6 +9,9 @@ class Solution{
         ar[1] = nums[1] ;
         ar[2] = nums[2] ;
         Arrays.sort(ar);
+        int p = ar[0] ;
+        ar[0] = ar[2] ;
+        ar[2] = p ;
         int sum1 = ar[0] + ar[1] + ar[2] ;
         int min = Math.abs(target - sum1) ;
         for(int k = 3 ; k < nums.length ; k ++) {
