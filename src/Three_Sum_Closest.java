@@ -9,13 +9,14 @@ class Solution{
         ar[1] = nums[1] ;
         ar[2] = nums[2] ;
         Arrays.sort(ar);
-        int p = ar[0] ;
+        int po = ar[0] ;
         ar[0] = ar[2] ;
-        ar[2] = p ;
+        ar[2] = po ;
         int sum1 = ar[0] + ar[1] + ar[2] ;
         int min = Math.abs(target - sum1) ;
+        int p = -1 , i ;
         for(int k = 3 ; k < nums.length ; k ++) {
-            for (int i = 0; i < 3; i++) {
+            for (i = 0; i < 3; i++) {
                 int sum = 0;
                 for (int j = 0; j < 3; j++) {
                     if (i != j)
@@ -25,27 +26,26 @@ class Solution{
                 }
                 if (Math.abs(target - sum) <= min) {
                     min = Math.abs(target - sum);
-                    ar[i] = nums[k];
-                    break;
+//                    ar[i] = nums[k];
+//                    break ;
+                    p = i ;
                 }
             }
+            if(p > -1)
+                ar[p] = nums[k] ;
+            p = -1 ;
         }
         return (ar[0] + ar[1] + ar[2]) ;
     }
 }
-
 public class Three_Sum_Closest {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in) ;
-//        System.out.println("Enter the number of elements you want inside the array");
         int n = sc.nextInt() ;
         int[] nums = new int[n] ;
-//        Arrays.fill(nums , 0);
         for(int i = 0 ; i < n ; i ++){
-//            System.out.println("Enter the element at index: " + (i + 1));
             nums[i] = sc.nextInt() ;
         }
-//        System.out.println("Enter the integer number.");
         int target = sc.nextInt() ;
         Solution ob = new Solution() ;
         int ret = ob.threeSumClosest(nums , target) ;
